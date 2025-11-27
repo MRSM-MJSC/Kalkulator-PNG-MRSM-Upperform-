@@ -92,12 +92,13 @@ function calculatePNG(isFormative) {
     <p>Sila tulis mengikut ejaan yang betul dan tepat❗</p>
     
 <div class="section">
-    <label>Adakah ini Ujian Formatif?</label>
-    <input type="checkbox" id="formative" onclick="document.getElementById('extra-fields').style.display=this.checked?'none':'block';">
+<label>Adakah ini Ujian Formatif?</label>
+    <input type="radio" id="formative-no" name="formative" value="Tidak" checked onclick="toggleExtraFields(false)"> Ya
+    <input type="radio" id="formative-yes" name="formative" value="Ya" onclick="toggleExtraFields(true)"> Tidak
 </div>
 
 <div class="section">
-    <label>Sila tulis nama anda:</label>
+    <label for="nama">Sila masukkan nama anda:</label>
     <input type="text" id="nama">
 </div>
 
@@ -120,17 +121,24 @@ function calculatePNG(isFormative) {
     <input type="number" id="sej">
     <label for="islam">Pendidikan Islam🕌</label>
     <input type="number" id="islam">
-    <div id="extra-fields">
+    
+    <div id="extra-fields" style="display:none;">
         <label for="pj">Pendidikan Jasmani⚽️</label>
         <input type="number" id="pj">
     </div>
 </div>
 
-<button onclick="calculatePNG(document.getElementById('formative').checked)">Kira PNG🔎</button>
-    
+<br>
+<button onclick="calculatePNG(document.getElementById('formative-no').checked)">Kira PNG🔎</button>
 <ul><p><small><small>'MJSCMuo'product, Waldann</small></small></p></ul>
 <h3>Keputusan:</h3>
 <p id="result"></p>
 <p id="message"></p>
+
+<script>
+        function toggleExtraFields(show) {
+            document.getElementById('extra-fields').style.display = show ? 'block' : 'none';
+        }
+</script>
 </body>
 </html>
