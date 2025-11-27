@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kalkulator PNG MRSM</title>
+<style>
+    body {
+        background: lightblue;
+        text-align: center;
+        font-family: Arial, sans-serif;
+    }
+    h1 {
+        margin-bottom: 5px;
+    }
+    .section {
+        margin: 15px 0;
+    }
+    label {
+        display: block;
+        margin: 8px 0 3px 0;
+        font-weight: bold;
+    }
+    input[type="text"], input[type="number"] {
+        padding: 5px;
+        width: 120px;
+        text-align: center;
+        font-size: 16px;
+    }
+    button {
+        padding: 8px 16px;
+        font-size: 16px;
+        margin-top: 15px;
+        cursor: pointer;
+    }
+</style>
+<script>
+function calculatePNG(isFormative) {
+    let nama = document.getElementById("nama").value;
+
+    let melayu = parseFloat(document.getElementById("melayu").value);
+    let inggeris = parseFloat(document.getElementById("inggeris").value);
+    let math = parseFloat(document.getElementById("math").value);
+    let addmath = parseFloat(document.getElementById("addmath").value);
+    let phy = parseFloat(document.getElementById("phy").value);
+    let chem = parseFloat(document.getElementById("chem").value);
+    let bio = parseFloat(document.getElementById("bio").value);
+    let sej = parseFloat(document.getElementById("sej").value);
+    let islam = parseFloat(document.getElementById("islam").value);
+    let pj = isFormative ? null : parseFloat(document.getElementById("pj").value);
+
+    function gradeBM(score){if(score>=85)return 4;if(score>=80)return 3.67;if(score>=75)return 3.33;if(score>=70)return 3;if(score>=65)return 2.67;if(score>=60)return 2.33;if(score>=55)return 2;if(score>=50)return 1.67;if(score>=45)return 1.33;if(score>=40)return 1;return 0;}
+    function gradeBI(score){if(score>=80)return 4;if(score>=75)return 3.67;if(score>=70)return 3.33;if(score>=65)return 3;if(score>=60)return 2.67;if(score>=55)return 2.33;if(score>=50)return 2;if(score>=45)return 1.67;if(score>=40)return 1.33;if(score>=35)return 1;return 0;}
+    function gradeMath(score){return gradeBI(score);}
+    function gradeAddMath(score){if(score>=75)return 4;if(score>=65)return 3.67;if(score>=60)return 3.33;if(score>=55)return 3;if(score>=50)return 2.67;if(score>=45)return 2.33;if(score>=40)return 2;if(score>=35)return 1.67;if(score>=30)return 1.33;if(score>=25)return 1;return 0;}
+    function gradePhy(score){if(score>=75)return 4;if(score>=70)return 3.67;if(score>=65)return 3.33;if(score>=60)return 3;if(score>=55)return 2.67;if(score>=50)return 2.33;if(score>=45)return 2;if(score>=40)return 1.67;if(score>=35)return 1.33;if(score>=30)return 1;return 0;}
+    function gradeChem(score){return gradePhy(score);}
+    function gradeBio(score){return gradePhy(score);}
+    function gradeSej(score){if(score>=85)return 4;if(score>=80)return 3.67;if(score>=75)return 3.33;if(score>=70)return 3;if(score>=65)return 2.67;if(score>=60)return 2.33;if(score>=55)return 2;if(score>=50)return 1.67;if(score>=45)return 1.33;if(score>=40)return 1;return 0;}
+    function gradeIslam(score){return gradeSej(score);}
+    function gradePJ(score){return gradeSej(score);}
+
+    let Bm = gradeBM(melayu)*6;
+    let Bi = gradeBI(inggeris)*6;
+    let Mt = gradeMath(math)*6;
+    let Admt = gradeAddMath(addmath)*6;
+    let Sic = gradePhy(phy)*6;
+    let Kim = gradeChem(chem)*6;
+    let Gy = gradeBio(bio)*6;
+    let Sj = gradeSej(sej)*4;
+    let Pi = gradeIslam(islam)*5;
+    let Pe = isFormative ? 0 : gradePJ(pj)*2;
+
+    let total = Bm+Bi+Mt+Admt+Sic+Kim+Gy+Sj+Pi+Pe;
+    let purata = isFormative ? total/51 : total/53;
+
+    document.getElementById("result").innerHTML = "PNG anda ialah: " + purata.toFixed(3);
+
+    let message = "";
+    if(purata===4){message="Tahniah "+nama+"!, Anda mendapat pointer 4.00. Kekalkan prestasi anda.";}
+    else if(purata>=3.50){message="Tahniah "+nama+"!, Teruskan usaha anda.";}
+    else if(purata>=3){message="Anda sudah lakukan yang terbaik, "+nama+"! Cuba Lagi dalam ujian seterusnya.";}
+    else{message="Jangan putus asa, "+nama+". Teruskan berusaha dengan lebih gigih.";}
+    document.getElementById("message").innerHTML = message;
+}
+</script>
+</head>
+<body>
+    <h1><img src="MARA.png" style="width:33px;height:33px;">    Kalkulator PNG    <img src="MRSM.png" style="width:38px;height:33px;"></h1>
+    <h3>Upperform Student</h3>
+    <br>
+    <p>Sila tulis mengikut ejaan yang betul dan tepat❗</p>
+    
+<div class="section">
+    <label>Adakah ini Ujian Formatif?</label>
+    <input type="checkbox" id="formative" onclick="document.getElementById('extra-fields').style.display=this.checked?'none':'block';">
+</div>
+
+<div class="section">
+    <label>Sila tulis nama anda:</label>
+    <input type="text" id="nama">
+</div>
+
+<div class="section">
+    <label>Bahasa Melayu</label>
+    <input type="number" id="melayu">
+    <label>English</label>
+    <input type="number" id="inggeris">
+    <label>Matematik</label>
+    <input type="number" id="math">
+    <label>Matematik Tambahan</label>
+    <input type="number" id="addmath">
+    <label>Fizik</label>
+    <input type="number" id="phy">
+    <label>Kimia</label>
+    <input type="number" id="chem">
+    <label>Biologi</label>
+    <input type="number" id="bio">
+    <label>Sejarah</label>
+    <input type="number" id="sej">
+    <label>Pendidikan Islam</label>
+    <input type="number" id="islam">
+    <div id="extra-fields">
+        <label>Pendidikan Jasmani</label>
+        <input type="number" id="pj">
+    </div>
+</div>
+
+<button onclick="calculatePNG(document.getElementById('formative').checked)">Kira PNG</button>
+
+<h3>Keputusan:</h3>
+<p id="result"></p>
+<p id="message"></p>
+</body>
+</html>
