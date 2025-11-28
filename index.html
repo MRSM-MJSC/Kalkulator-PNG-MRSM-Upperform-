@@ -113,27 +113,35 @@ function calculatePNG(isFormative) {
 
 <div class="section">
     <label for="melayu">Bahasa Melayu📚</label>
-    <input type="number" id="melayu"style="height:12px;">
+    <input type="number" id="melayu" style="height:12px;" min="0" max="100">
+
     <label for="inggeris">English📖</label>
-    <input type="number" id="inggeris" style="height:12px;">
+    <input type="number" id="inggeris" style="height:12px;" min="0" max="100">
+
     <label for="math">Matematik🧮</label>
-    <input type="number" id="math" style="height:12px;">
+    <input type="number" id="math" style="height:12px;" min="0" max="100">
+
     <label for="addmath">Matematik Tambahan🧮</label>
-    <input type="number" id="addmath" style="height:12px;">
+    <input type="number" id="addmath" style="height:12px;" min="0" max="100">
+
     <label for="phy">Fizik🔭</label>
-    <input type="number" id="phy" style="height:12px;">
+    <input type="number" id="phy" style="height:12px;" min="0" max="100">
+
     <label for="chem">Kimia🧪</label>
-    <input type="number" id="chem" style="height:12px;">
+    <input type="number" id="chem" style="height:12px;" min="0" max="100">
+
     <label for="bio">Biologi🧬/Prinsip Perakaunan💵</label>
-    <input type="number" id="bio" style="height:12px; width:250px">
+    <input type="number" id="bio" style="height:12px; width:250px" min="0" max="100">
+
     <label for="sej">Sejarah📜</label>
-    <input type="number" id="sej" style="height:12px;">
+    <input type="number" id="sej" style="height:12px;" min="0" max="100">
+
     <label for="islam">Pendidikan Islam🕌</label>
-    <input type="number" id="islam" style="height:12px;">
-    
+    <input type="number" id="islam" style="height:12px;" min="0" max="100">
+
     <div id="extra-fields" style="display:none;">
         <label for="pj">Pendidikan Jasmani⚽️</label>
-        <input type="number" id="pj" style="height:12px;">
+        <input type="number" id="pj" style="height:12px;" min="0" max="100">
     </div>
 </div>
 
@@ -151,6 +159,13 @@ function calculatePNG(isFormative) {
         function toggleExtraFields(show) {
             document.getElementById('extra-fields').style.display = show ? 'block' : 'none';
         }
+        // Limit semua input number ke 100
+document.querySelectorAll('input[type="number"]').forEach(input => {
+    input.addEventListener('input', () => {
+        if(input.value > 100) input.value = 100;
+        if(input.value < 0) input.value = 0; // optional
+    });
+});
 </script>
 </body>
 </html>
