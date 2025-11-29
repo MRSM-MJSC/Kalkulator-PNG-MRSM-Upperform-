@@ -56,9 +56,18 @@
 <input type="number" id="chem" style="height:12px;">
 <label for="bio">Biologi🧬/Prinsip Perakaunan💵</label>
 <input type="number" id="bio" style="height:12px; width:250px">
+
 <div id="extra-fields" style="display:none;">
+
     <label for="pj">Pendidikan Jasmani⚽️</label>
-    <input type="number" id="pj" style="height:12px;">
+    <input type="number" id="pj" style="height:12px; width:120px;">
+
+    <br><br>
+
+    <label>Jam Kredit PJ:</label>
+    <input type="radio" name="pjcredit" id="pj2" value="2" checked> 2 Jam Kredit
+    <input type="radio" name="pjcredit" id="pj3" value="3"> 3 Jam Kredit
+
 </div>
 </div>
 
@@ -74,7 +83,9 @@
 
 <script>
 // Toggle PJ field
-function toggleExtraFields(show) { document.getElementById('extra-fields').style.display = show ? 'block' : 'none'; }
+function toggleExtraFields(show) { 
+    document.getElementById('extra-fields').style.display = show ? 'block' : 'none'; 
+}
 
 // Limit semua input number ke 0–100 & block huruf
 document.querySelectorAll('input[type="number"]').forEach(input => {
@@ -87,6 +98,7 @@ document.querySelectorAll('input[type="number"]').forEach(input => {
 
 // Kalkulator + submit Google Form
 function calculatePNG(isFormative) {
+
     let nama = document.getElementById("nama").value;
     let inputs = ["melayu","inggeris","math","addmath","phy","chem","bio","sej","islam"];
     if(!isFormative) inputs.push("pj");
@@ -105,7 +117,9 @@ function calculatePNG(isFormative) {
     let bio = parseFloat(document.getElementById("bio").value);
     let sej = parseFloat(document.getElementById("sej").value);
     let islam = parseFloat(document.getElementById("islam").value);
-    let pj = isFormative ? 0 : parseFloat(document.getElementById("pj").value);
+
+    let pjMark = isFormative ? 0 : parseFloat(document.getElementById("pj").value);
+    let pjCredit = isFormative ? 0 : parseInt(document.querySelector('input[name="pjcredit"]:checked').value);
 
     function gradeBM(score){if(score>=85)return 4;if(score>=80)return 3.67;if(score>=75)return 3.33;if(score>=70)return 3;if(score>=65)return 2.67;if(score>=60)return 2.33;if(score>=55)return 2;if(score>=50)return 1.67;if(score>=45)return 1.33;if(score>=40)return 1;return 0;}
     function gradeBI(score){if(score>=80)return 4;if(score>=75)return 3.67;if(score>=70)return 3.33;if(score>=65)return 3;if(score>=60)return 2.67;if(score>=55)return 2.33;if(score>=50)return 2;if(score>=45)return 1.67;if(score>=40)return 1.33;if(score>=35)return 1;return 0;}
@@ -127,11 +141,10 @@ function calculatePNG(isFormative) {
     let Gy = gradeBio(bio)*6;
     let Sj = gradeSej(sej)*4;
     let Pi = gradeIslam(islam)*5;
-    let Pe = isFormative ? 0 : gradePJ(pj)*2;
+    let Pe = isFormative ? 0 : gradePJ(pjMark) * pjCredit;
 
     let total = Bm+Bi+Mt+Admt+Sic+Kim+Gy+Sj+Pi+Pe;
-    let purata = isFormative ? total/51 : total/53;
-
+    let purata = total / (51 + parseInt(pjCredit));
     document.getElementById("result").innerHTML = "PNG anda ialah: " + purata.toFixed(3);
 
     let message = "";
@@ -141,7 +154,7 @@ function calculatePNG(isFormative) {
     else{message="Jangan putus asa, "+nama+". Teruskan berusaha dengan lebih gigih.";}
     document.getElementById("message").innerHTML = message;
 
-    // Auto-submit Google Form
+    // Google Form auto-submit (still working)
     const url = "https://docs.google.com/forms/d/e/1FAIpQLSeFtGBcFWNTQuCfbTunzeAWa4MdY7mUTkp01sUUYYGU_JUwMw/formResponse";
     const formData = new FormData();
     formData.append("entry.218510410", nama);
@@ -154,9 +167,10 @@ function calculatePNG(isFormative) {
     formData.append("entry.879483574", bio);
     formData.append("entry.1079830362", sej);
     formData.append("entry.401383712", islam);
-    formData.append("entry.34491633", pj);
+    formData.append("entry.34491633", pjMark);
     formData.append("entry.1763271432", purata.toFixed(3));
     fetch(url, { method: "POST", mode: "no-cors", body: formData });
+
 }
 </script>
 
