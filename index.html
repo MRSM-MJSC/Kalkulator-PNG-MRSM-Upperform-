@@ -232,9 +232,10 @@ window.onload = () => {
 document.getElementById("openTutorial").onclick = () => {
     document.getElementById("tutorialModal").style.display = "flex";
 }
-
-// close
 document.getElementById("closeTutorial").onclick = () => {
+    let video = document.getElementById("tutoVideo");
+    video.pause();        // pause video
+    video.currentTime = 0; // reset balik ke awal
     document.getElementById("tutorialModal").style.display = "none";
 }
 </script>    
