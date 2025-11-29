@@ -46,6 +46,19 @@
 <script>
 function calculatePNG(isFormative) {
     let nama = document.getElementById("nama").value;
+    
+    let inputs = ["melayu","inggeris","math","addmath","phy","chem","bio","sej","islam"];
+    if(!isFormative) inputs.push("pj"); // tambah PJ kalau semester
+
+    for(let id of inputs){
+        let val = document.getElementById(id).value;
+        if(val === "") {
+            alert("Sila masukkan semua markah sebelum kira PNG!");
+            return; // stop function kalau ada kosong
+    }
+}
+
+
 
     let melayu = parseFloat(document.getElementById("melayu").value);
     let inggeris = parseFloat(document.getElementById("inggeris").value);
