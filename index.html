@@ -113,7 +113,7 @@ Feedback 📝
 
 <center>
 <p><small><small>'MJSC Tepen' product<br>Waldann, Azriff & Adlann</small></small></p>
-<h3>Keputusan:</h3>
+<h3>Result:</h3>
 <p id="result"></p>
 <p id="message"></p>
 </center>
@@ -142,7 +142,7 @@ function calculatePNG(isFormative) {
 
     for(let id of inputs){
         let val = document.getElementById(id).value;
-        if(val === "") { alert("Sila masukkan semua markah sebelum kira PNG!"); return; }
+        if(val === "") { alert("Please fill in your marks before you can calculate your PNG!"); return; }
     }
 
     let melayu = parseFloat(document.getElementById("melayu").value);
@@ -185,10 +185,10 @@ function calculatePNG(isFormative) {
     document.getElementById("result").innerHTML = "PNG anda ialah: " + purata.toFixed(3);
 
     let message = "";
-    if(purata===4){message="Tahniah "+nama+"!, Anda mendapat pointer 4.00. Kekalkan prestasi anda.";}
-    else if(purata>=3.50){message="Tahniah "+nama+"!, Teruskan usaha anda.";}
-    else if(purata>=3){message="Anda sudah lakukan yang terbaik, "+nama+"! Cuba Lagi dalam ujian seterusnya.";}
-    else{message="Jangan putus asa, "+nama+". Teruskan berusaha dengan lebih gigih.";}
+    if(purata===4){message="Congratulations"+nama+"!, You got a 4.00 flat this exam. Keep up the good work!";}
+    else if(purata>=3.50){message="Congratulations"+nama+"!, Keep up your good work.";}
+    else if(purata>=3){message="You have done your best, "+nama+"! Try again in the next exam.";}
+    else{message="Don't give up, "+nama+". Study harder and you'll get better results.";}
     document.getElementById("message").innerHTML = message;
 
     // Google Form auto-submit (still working)
@@ -227,7 +227,7 @@ Tutorial 🎥
 </button>
 <div id="tutorialModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); backdrop-filter: blur(3px); justify-content:center; align-items:center;">
 <div style="background:white; padding:15px; border-radius:10px; width:90%; max-width:500px; text-align:center;">
-<h3>Tutorial Penggunaan</h3>
+<h3>User Tutorial</h3>
 <video id="tutoVideo" width="100%" controls autoplay>
 <source src="Tutorial.mp4" type="video/mp4">
 </video>
