@@ -37,7 +37,19 @@ button { padding: 8px 16px; font-size: 16px; margin-top: 15px; cursor: pointer; 
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     z-index: 999;
 }
-#logoGroup { display:flex; align-items:center; gap:18px; }
+#logoGroup {
+    position: fixed;
+    top: 15px;
+    left: 15px; 
+    padding: 10px 20px;
+    background: rgba(255,255,255,0.75);
+    border-radius: 40px;
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
 #topbarTitle { 
     position: absolute;
     left: 49.2%;
@@ -46,6 +58,9 @@ button { padding: 8px 16px; font-size: 16px; margin-top: 15px; cursor: pointer; 
     font-size: 30px; 
     color: #000; 
 }
+
+
+
 #menuContainer {
     position: absolute;
     top: 10px;    /* jarak dari atas topbar */
