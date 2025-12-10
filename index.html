@@ -21,7 +21,6 @@ label { display: block; margin: 8px 0 3px 0; font-weight: normal; }
 input[type="text"], input[type="number"] { padding: 5px; width: 120px; text-align: center; font-size: 16px; height:12px; }
 button { padding: 8px 16px; font-size: 16px; margin-top: 15px; cursor: pointer; }
 
-/* Topbar fix */
 #topBar {
     display: flex;
     align-items: center;
@@ -59,12 +58,10 @@ button { padding: 8px 16px; font-size: 16px; margin-top: 15px; cursor: pointer; 
     color: #000; 
 }
 
-
-
 #menuContainer {
     position: absolute;
-    top: 10px;    /* jarak dari atas topbar */
-    right: 50px;  /* jarak dari kanan topbar */
+    top: 10px;    
+    right: 50px;  
     display: flex;
     align-items: center;
 }
@@ -82,18 +79,75 @@ button { padding: 8px 16px; font-size: 16px; margin-top: 15px; cursor: pointer; 
     z-index: 1000;
 }
 #result, #message { margin-top:10px; font-size:18px; font-weight:bold; }
+
+
+@media (max-width: 600px) {
+    #topBar {
+        height: 45px; 
+        flex-direction: row; 
+        justify-content: space-between;
+        padding: 5px 10px;
+    }
+
+    #logoGroup {
+        position: static;
+        width: auto;
+        padding: 5px 10px;
+        gap: 8px;
+        flex-shrink: 1;
+        justify-content: flex-start;
+    }
+
+    #logoGroup img {
+        height: 20px;    /* ikut tinggi topbar (fluid) */
+        width: auto;    /* maintain ratio, TAK melebar */
+    }
+
+    #menuContainer {
+        /*position: static;*/
+        flex-shrink: 1;
+        justify-content: flex-end;
+        position: absolute;
+        top: 0.5px;    
+        right: 25px;  
+        display: flex;
+        align-items: center;
+        margin: 0;
+        padding: 0;
+    }
+    #menuContainer button {
+        padding: 3px 6px;
+        font-size: 12px;
+    }
+
+    body {
+        margin-top: 55px;
+    }
+
+    input[type="text"], input[type="number"] { 
+        width: 120px;
+    }
+    #markah {
+        width: 120px !important;
+        max-width: 120px;
+    }
+
+    #tutorialModal > div {
+        width: 95% !important;
+        max-width: 400px !important;
+    }
+}    
+    
+  
 </style>
 </head>
 <body>
 
-<!-- Topbar -->
 <div id="topBar">
     <div id="logoGroup">
-        <img src="MARA.png" style="height:38px;">
         <img src="MRSM.png" style="height:38px;">
         <img src="IMG_1460.webp" style="height:33px;">
     </div>
-    <div id="topbarTitle">PNG Calculator</div>
     <div id="menuContainer">
         <button id="menuButton" style="
             padding: 8px 14px;
@@ -110,8 +164,9 @@ button { padding: 8px 16px; font-size: 16px; margin-top: 15px; cursor: pointer; 
         </div>
     </div>
 </div>
-<br><br><br><br><br>
-<h3>Upper form Student</h3>
+
+
+<h1>NovaCalcX</h1>
 
 <div class="section">
 <label>Exam:</label>
@@ -171,7 +226,6 @@ button { padding: 8px 16px; font-size: 16px; margin-top: 15px; cursor: pointer; 
 <p id="message"></p>
 </center>
 
-<!-- Tutorial Modal -->
 <div id="tutorialModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); backdrop-filter: blur(3px); justify-content:center; align-items:center;">
 <div style="background:white; padding:15px; border-radius:10px; width:90%; max-width:500px; text-align:center;">
 <h3>User Tutorial</h3>
