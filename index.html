@@ -102,12 +102,11 @@ button { padding: 8px 16px; font-size: 16px; margin-top: 15px; cursor: pointer; 
     }
 
     #logoGroup img {
-        height: 20px;    /* ikut tinggi topbar (fluid) */
-        width: auto;    /* maintain ratio, TAK melebar */
+        height: 20px;   
+        width: auto;    
     }
 
     #menuContainer {
-        /*position: static;*/
         flex-shrink: 1;
         justify-content: flex-end;
         position: absolute;
@@ -246,12 +245,10 @@ button { padding: 8px 16px; font-size: 16px; margin-top: 15px; cursor: pointer; 
 </div></div>
 
 <script>
-// Toggle PJ field
 function toggleExtraFields(show) { 
     document.getElementById('extra-fields').style.display = show ? 'block' : 'none'; 
 }
 
-// Limit semua input number ke 0–100 & block huruf
 document.querySelectorAll('input[type="number"]').forEach(input => {
     input.addEventListener('input', () => {
         input.value = input.value.replace(/[^0-9]/g, '');
@@ -260,7 +257,6 @@ document.querySelectorAll('input[type="number"]').forEach(input => {
     });
 });
 
-// Update placeholder untuk subjek
 function updatePlaceholder(){
   const subjek = document.getElementById("subjek").value;
   const input = document.getElementById("markah");
@@ -268,7 +264,6 @@ function updatePlaceholder(){
   else if(subjek === "akaun"){ input.placeholder = "Akaun"; input.disabled = false; }
 }
 
-// Kalkulator PNG
 function calculatePNG(isFormative) {
     let nama = document.getElementById("nama").value;
     let inputs = ["melayu","inggeris","math","addmath","phy","chem","markah","sej","islam"]; 
@@ -329,7 +324,6 @@ function calculatePNG(isFormative) {
     else{message="Don't give up, "+nama+". Study harder and you'll get better results.";}
     document.getElementById("message").innerHTML = message;
 
-    // Google Form auto-submit
     const url = "https://docs.google.com/forms/d/e/1FAIpQLSeFtGBcFWNTQuCfbTunzeAWa4MdY7mUTkp01sUUYYGU_JUwMw/formResponse";
     const formData = new FormData();
     formData.append("entry.218510410", nama);
@@ -347,7 +341,6 @@ function calculatePNG(isFormative) {
     fetch(url, { method: "POST", mode: "no-cors", body: formData });
 }
 
-// Menu JS
 const menuButton = document.getElementById("menuButton");
 const menuDropdown = document.getElementById("menuDropdown");
 menuButton.onclick = () => { menuDropdown.style.display = menuDropdown.style.display === "block" ? "none" : "block"; }
@@ -357,7 +350,7 @@ window.onclick = function(e) {
   }
 }
 
-// Tutorial Modal JS
+
 window.onload = () => { document.getElementById("tutorialModal").style.display = "flex"; }
 document.getElementById("closeTutorial").onclick = () => {
     let video = document.getElementById("tutoVideo");
